@@ -9,7 +9,10 @@ const RECT_SIZE: Vector2i = Vector2i(SPRITE_SIZE, SPRITE_SIZE)
 
 var rect_position: Vector2i
 var sprite_region: Rect2i
+
+var colour: Colour
 var size_inches: float
+var size_category: Size
 
 enum Colour {
 	LIGHTGREY,
@@ -30,11 +33,44 @@ enum Size {
 }
 
 
-func _init(colour: Colour, size: Size, inches: float) -> void:
-	rect_position = Vector2i(colour * SPRITE_SIZE, size * SPRITE_SIZE)
-	sprite_region = Rect2i(rect_position, RECT_SIZE)
+func _init(random_float: float, inches: float) -> void:
+	colour = _determine_colour(random_float)
 	size_inches = inches
+	size_category = _determine_size(inches)
+
+	rect_position = Vector2i(colour * SPRITE_SIZE, size_category * SPRITE_SIZE)
+	sprite_region = Rect2i(rect_position, RECT_SIZE)
 
 
 func _ready() -> void:
 	sprite.set_region_rect(sprite_region)
+
+
+func _determine_colour(random_float: float) -> Colour:
+	if random_float < 0.2:
+		return Colour.LIGHTGREY
+	elif random_float < 0.38:
+		return Colour.DARKGREY
+	elif random_float < 0.56:
+		return Colour.BLACK
+	elif random_float < 0.7:
+		return Colour.BROWN
+	elif random_float < 0.8:
+		return Colour.RED
+	elif random_float < 0.9:
+		return Colour.GREEN
+	elif random_float < 0.96:
+		return Colour.SILVER
+	else:
+		return Colour.GOLD
+
+
+func _determine_size(inches: float) -> Size:
+	if inches < 10:
+		return Size.S
+	elif inches < 20:
+		return Size.M
+	elif inches < 30:
+		return Size.L
+	else:
+		return Size.XL
