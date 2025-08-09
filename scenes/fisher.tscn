@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmjpmh1x86hjw"]
+
+[ext_resource type="PackedScene" uid="uid://c1pnxtt6dakg7" path="res://scenes/fish.tscn" id="1_m8y6f"]
+[ext_resource type="Script" uid="uid://drdgpuugcrmrw" path="res://scripts/fisher.gd" id="2_jgc20"]
+
+[node name="Fisher" instance=ExtResource("1_m8y6f")]
+script = ExtResource("2_jgc20")
+
+[node name="Sprite" parent="." index="0"]
+flip_h = false
+region_rect = Rect2(0, 0, 16, 16)
