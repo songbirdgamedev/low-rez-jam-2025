@@ -1,0 +1,74 @@
+[gd_scene load_steps=12 format=3 uid="uid://bvymecfklupxj"]
+
+[ext_resource type="Texture2D" uid="uid://dpee3urjbjccd" path="res://assets/sprites/bobber-spritesheet.png" id="1_2wku4"]
+[ext_resource type="Script" uid="uid://og60bq0gxfsm" path="res://scripts/bobber.gd" id="1_rn3pg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rn3pg"]
+atlas = ExtResource("1_2wku4")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1y8pg"]
+atlas = ExtResource("1_2wku4")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4o5is"]
+atlas = ExtResource("1_2wku4")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bgds"]
+atlas = ExtResource("1_2wku4")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5btnv"]
+atlas = ExtResource("1_2wku4")
+region = Rect2(32, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4f4en"]
+atlas = ExtResource("1_2wku4")
+region = Rect2(40, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_su5i5"]
+atlas = ExtResource("1_2wku4")
+region = Rect2(48, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pghgi"]
+atlas = ExtResource("1_2wku4")
+region = Rect2(56, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jsxrf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rn3pg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1y8pg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4o5is")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1bgds")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5btnv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4f4en")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_su5i5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pghgi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Bobber" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_jsxrf")
+autoplay = "default"
+frame_progress = 0.430128
+script = ExtResource("1_rn3pg")

@@ -8,4 +8,3 @@ script = ExtResource("2_jgc20")
 
 [node name="Sprite" parent="." index="0"]
 flip_h = false
-region_rect = Rect2(0, 0, 16, 16)

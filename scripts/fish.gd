@@ -33,7 +33,9 @@ enum Size {
 }
 
 
-func _init(random_float: float, inches: float) -> void:
+func _init(random_float: float = 0.0, inches: float = 3.0) -> void:
+	print(random_float, " ", inches)
+
 	colour = _determine_colour(random_float)
 	size_inches = inches
 	size_category = _determine_size(inches)

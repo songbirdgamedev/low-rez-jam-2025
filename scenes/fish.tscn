@@ -5,6 +5,7 @@
 
 [node name="Fish" type="Node2D"]
 script = ExtResource("1_n6yr6")
+metadata/_custom_type_script = "uid://crn5lw6fj04ai"
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_8g0i4")
