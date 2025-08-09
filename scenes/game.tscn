@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c5cxadli5s062"]
+[gd_scene load_steps=6 format=3 uid="uid://c5cxadli5s062"]
 
 [ext_resource type="Script" uid="uid://bynug4edynid" path="res://scripts/game_manager.gd" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://rm47gl33a1ee" path="res://scenes/fish_log.tscn" id="2_iywne"]
 [ext_resource type="Texture2D" uid="uid://b4ohqeg0tkhjm" path="res://assets/sprites/background-draft.png" id="2_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://dmjpmh1x86hjw" path="res://scenes/fisher.tscn" id="3_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://bvymecfklupxj" path="res://scenes/bobber.tscn" id="4_lbhrr"]
@@ -10,6 +11,10 @@
 [node name="GameManager" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("1_uwrxv")
+
+[node name="FishLog" parent="." instance=ExtResource("2_iywne")]
+unique_name_in_owner = true
+visible = false
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -5

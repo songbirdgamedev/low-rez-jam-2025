@@ -4,6 +4,7 @@ extends Fish
 
 @onready var fisher: Fisher = %Fisher
 @onready var bobber: AnimatedSprite2D = %Bobber
+@onready var fish_log: CanvasLayer = %FishLog
 
 const MIN_SIZE: float = 1.0
 const SIZE_ALLOWANCE: float = 6.0
@@ -56,6 +57,7 @@ func _catch_fish() -> void:
 	var inches: float = snappedf(random_inches, PRECISION)
 
 	var new_fish = Fish.new(random_float, inches)
+	fish_log.add_fish(new_fish   )
 
 	# play animation of fish coming out of water
 	bobber.hide_bobber()

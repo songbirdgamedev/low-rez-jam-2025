@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://rm47gl33a1ee"]
+
+[ext_resource type="Script" uid="uid://c58djibijmxcj" path="res://scripts/fish_log.gd" id="1_6s7nr"]
+[ext_resource type="Texture2D" uid="uid://derapdwyv32fy" path="res://assets/sprites/fish_sprites_transparent.png" id="1_76u2l"]
+
+[node name="FishLog" type="CanvasLayer"]
+script = ExtResource("1_6s7nr")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.8, 0.666667, 1)
+
+[node name="FishSpritesTransparent" type="Sprite2D" parent="."]
+position = Vector2(132, 32)
+texture = ExtResource("1_76u2l")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_right = 4
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer"]
+layout_mode = 2
+columns = 4
