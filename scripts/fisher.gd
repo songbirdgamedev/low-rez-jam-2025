@@ -57,7 +57,7 @@ func _catch_fish() -> void:
 	var inches: float = snappedf(random_inches, PRECISION)
 
 	var new_fish = Fish.new(random_float, inches)
-	fish_log.add_fish(new_fish   )
+	fish_log.add_fish(new_fish)
 
 	# play animation of fish coming out of water
 	bobber.hide_bobber()

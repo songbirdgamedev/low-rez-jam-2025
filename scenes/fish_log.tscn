@@ -1,22 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://rm47gl33a1ee"]
+[gd_scene load_steps=5 format=3 uid="uid://rm47gl33a1ee"]
 
 [ext_resource type="Script" uid="uid://c58djibijmxcj" path="res://scripts/fish_log.gd" id="1_6s7nr"]
-[ext_resource type="Texture2D" uid="uid://derapdwyv32fy" path="res://assets/sprites/fish_sprites_transparent.png" id="1_76u2l"]
+[ext_resource type="Texture2D" uid="uid://by3w5403qebnv" path="res://assets/sprites/misc_sprites.png" id="2_kcn8w"]
+[ext_resource type="Texture2D" uid="uid://lvjxxqmiofxb" path="res://assets/sprites/misc_sprites_transparent.png" id="3_kcn8w"]
+[ext_resource type="FontFile" uid="uid://daony176pqech" path="res://assets/fonts/Kenney Mini.ttf" id="4_rvaug"]
 
 [node name="FishLog" type="CanvasLayer"]
 script = ExtResource("1_6s7nr")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 0.8, 0.666667, 1)
-
-[node name="FishSpritesTransparent" type="Sprite2D" parent="."]
-position = Vector2(132, 32)
-texture = ExtResource("1_76u2l")
+texture = ExtResource("2_kcn8w")
+region_rect = Rect2(16, 80, 16, 16)
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -24,9 +27,105 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_right = 4
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 0
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(48, 64)
 layout_mode = 2
-columns = 4
+theme_override_constants/separation = 0
+
+[node name="FishColumn" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(16, 64)
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_constants/separation = 0
+
+[node name="FishSContainer" type="CenterContainer" parent="MarginContainer/HBoxContainer/FishColumn"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="FishS" type="Sprite2D" parent="MarginContainer/HBoxContainer/FishColumn/FishSContainer"]
+unique_name_in_owner = true
+texture = ExtResource("3_kcn8w")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 64, 16, 16)
+
+[node name="FishMContainer" type="CenterContainer" parent="MarginContainer/HBoxContainer/FishColumn"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="FishM" type="Sprite2D" parent="MarginContainer/HBoxContainer/FishColumn/FishMContainer"]
+unique_name_in_owner = true
+texture = ExtResource("3_kcn8w")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 80, 16, 16)
+
+[node name="FishLContainer" type="CenterContainer" parent="MarginContainer/HBoxContainer/FishColumn"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="FishL" type="Sprite2D" parent="MarginContainer/HBoxContainer/FishColumn/FishLContainer"]
+unique_name_in_owner = true
+texture = ExtResource("3_kcn8w")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 96, 16, 16)
+
+[node name="FishXLContainer" type="CenterContainer" parent="MarginContainer/HBoxContainer/FishColumn"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="FishXL" type="Sprite2D" parent="MarginContainer/HBoxContainer/FishColumn/FishXLContainer"]
+unique_name_in_owner = true
+texture = ExtResource("3_kcn8w")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 112, 16, 16)
+
+[node name="TextColumn" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="LabelS" type="Label" parent="MarginContainer/HBoxContainer/TextColumn"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_rvaug")
+theme_override_font_sizes/font_size = 8
+text = "22.2"
+vertical_alignment = 1
+
+[node name="LabelM" type="Label" parent="MarginContainer/HBoxContainer/TextColumn"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_rvaug")
+theme_override_font_sizes/font_size = 8
+vertical_alignment = 1
+
+[node name="LabelL" type="Label" parent="MarginContainer/HBoxContainer/TextColumn"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_rvaug")
+theme_override_font_sizes/font_size = 8
+vertical_alignment = 1
+
+[node name="LabelXL" type="Label" parent="MarginContainer/HBoxContainer/TextColumn"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_rvaug")
+theme_override_font_sizes/font_size = 8
+vertical_alignment = 1
