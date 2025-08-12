@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://q7hpcbbbkph8"]
+[gd_scene load_steps=7 format=3 uid="uid://qrrmes6xgfok"]
 
 [ext_resource type="Texture2D" uid="uid://lvjxxqmiofxb" path="res://assets/sprites/misc_sprites_transparent.png" id="1_5iev5"]
 [ext_resource type="Script" uid="uid://doosw0vpmgq47" path="res://scripts/minigame.gd" id="1_hwsak"]
@@ -6,6 +6,21 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_hwsak"]
 atlas = ExtResource("1_5iev5")
 region = Rect2(64, 64, 48, 8)
+
+[sub_resource type="Animation" id="Animation_hwsak"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_5iev5"]
 resource_name = "move"
@@ -21,21 +36,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(2, 0), Vector2(45, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_hwsak"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(2, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_22ed1"]
@@ -69,5 +69,10 @@ libraries = {
 }
 autoplay = "move"
 
-[node name="Timer" type="Timer" parent="."]
+[node name="EndTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="TryAgainTimer" type="Timer" parent="."]
+wait_time = 0.5
 one_shot = true

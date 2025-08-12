@@ -1,14 +1,24 @@
+class_name Minigame
 extends CanvasLayer
 
 
 @onready var animation_player: AnimationPlayer = $TextureRect/ColorRect/AnimationPlayer
 @onready var color_rect: ColorRect = $TextureRect/ColorRect
-@onready var timer: Timer = $Timer
+@onready var end_timer: Timer = $EndTimer
+@onready var try_again_timer: Timer = $TryAgainTimer
+
+
+enum Result {
+	MISSED,
+	TRYAGAIN,
+	CAUGHT,
+	PERFECT
+}
 
 
 func _ready() -> void:
 	_hide_and_reset()
-	timer.timeout.connect(_hide_and_reset)
+	end_timer.timeout.connect(_hide_and_reset)
 
 
 func start(fish_colour: Fish.Colour) -> void:
@@ -30,20 +40,22 @@ func start(fish_colour: Fish.Colour) -> void:
 	show()
 
 
-func end() -> void:
-	animation_player.stop()
+func end() -> Result:
+	animation_player.pause()
 	var x: float = color_rect.get_position().x
 
 	if x < 6.0 or x > 42.0:
-		pass # lose fish
+		end_timer.start()
+		return Result.MISSED
 	elif x < 18.0 or x > 30.0:
-		pass # try again
+		try_again_timer.start()
+		return Result.TRYAGAIN
 	elif x < 22.0 or x > 26.0:
-		pass # catch fish
+		end_timer.start()
+		return Result.CAUGHT
 	else:
-		pass # perfect catch, show message and boost size
-
-	timer.start()
+		end_timer.start()
+		return Result.PERFECT
 
 
 func _hide_and_reset() -> void:

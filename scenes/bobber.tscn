@@ -71,7 +71,7 @@ animations = [{
 [node name="Bobber" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_jsxrf")
 autoplay = "default"
-frame_progress = 0.644234
+frame_progress = 0.0370531
 script = ExtResource("1_rn3pg")
 
 [node name="Label" type="Label" parent="."]

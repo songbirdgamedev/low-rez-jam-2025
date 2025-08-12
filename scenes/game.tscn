@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://rm47gl33a1ee" path="res://scenes/fish_log.tscn" id="2_iywne"]
 [ext_resource type="Texture2D" uid="uid://b4ohqeg0tkhjm" path="res://assets/sprites/background-draft.png" id="2_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://dmjpmh1x86hjw" path="res://scenes/fisher.tscn" id="3_lbhrr"]
-[ext_resource type="PackedScene" path="res://scenes/minigame.tscn" id="3_p57ef"]
+[ext_resource type="PackedScene" uid="uid://qrrmes6xgfok" path="res://scenes/minigame.tscn" id="3_p57ef"]
 [ext_resource type="PackedScene" uid="uid://bvymecfklupxj" path="res://scenes/bobber.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://6i1ih1odvwoq" path="res://scenes/message.tscn" id="4_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://bjjkmxqamv83p" path="res://scenes/rod.tscn" id="7_gee14"]

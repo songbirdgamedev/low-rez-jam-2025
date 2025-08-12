@@ -26,6 +26,12 @@ enum State {
 }
 
 
+signal line_cast
+signal fish_hooked
+signal fish_missed
+signal fish_caught
+
+
 func _ready() -> void:
 	bobber.bite_missed.connect(_miss_fish)
 
@@ -41,19 +47,18 @@ func _process(_delta: float) -> void:
 			# check if fish bite first
 			_hook_fish()
 		State.HOOKED:
-			# check if pressed in middle or not
-			_catch_fish()
+			_attempt_catch()
 
 
 func _cast_line() -> void:
 	print("casting line")
-	# play animation
-	bobber.show_bobber()
+	line_cast.emit()
 	_change_state(State.WAITING)
 
 
 func _hook_fish() -> void:
 	print("hooking fish")
+	fish_hooked.emit()
 	_change_state(State.HOOKED)
 
 	random_float = randf()
@@ -61,18 +66,32 @@ func _hook_fish() -> void:
 	inches = snappedf(random_inches, PRECISION)
 
 	new_fish = Fish.new(random_float, inches)
-	bobber.hook_fish()
 	minigame.start(new_fish.colour)
+
+
+func _attempt_catch() -> void:
+	var result: Minigame.Result = minigame.end()
+
+	match result:
+		0:
+			_miss_fish()
+		1:
+			message.show_text("keep going...")
+			minigame.start(new_fish.colour)
+		2:
+			_catch_fish()
+		3:
+			_catch_fish()
 
 
 func _catch_fish() -> void:
 	print("catching fish")
+	fish_caught.emit()
 	_change_state(State.CAUGHT)
 
 	fish_log.add_fish(new_fish)
 
 	# play animation of fish coming out of water
-	bobber.hide_bobber()
 	if inches > fisher.size_inches:
 		fisher.replace_fisher(new_fish)
 
@@ -80,6 +99,7 @@ func _catch_fish() -> void:
 
 
 func _miss_fish() -> void:
+	fish_missed.emit()
 	# play animation
 	message.show_text("it got away...")
 	_change_state(State.READY)
