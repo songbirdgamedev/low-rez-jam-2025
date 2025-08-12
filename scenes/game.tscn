@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c5cxadli5s062"]
+[gd_scene load_steps=9 format=3 uid="uid://c5cxadli5s062"]
 
 [ext_resource type="Script" uid="uid://bynug4edynid" path="res://scripts/game_manager.gd" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://rm47gl33a1ee" path="res://scenes/fish_log.tscn" id="2_iywne"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" path="res://scenes/minigame.tscn" id="3_p57ef"]
 [ext_resource type="PackedScene" uid="uid://bvymecfklupxj" path="res://scenes/bobber.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://6i1ih1odvwoq" path="res://scenes/message.tscn" id="4_u5sy4"]
+[ext_resource type="PackedScene" uid="uid://bjjkmxqamv83p" path="res://scenes/rod.tscn" id="7_gee14"]
 
 [node name="Game" type="Node2D"]
 
@@ -33,6 +34,9 @@ texture = ExtResource("2_lnu2h")
 [node name="Fisher" parent="." instance=ExtResource("3_lbhrr")]
 unique_name_in_owner = true
 position = Vector2(48, 32)
+
+[node name="Rod" parent="." instance=ExtResource("7_gee14")]
+position = Vector2(32, 32)
 
 [node name="Bobber" parent="." instance=ExtResource("4_lbhrr")]
 unique_name_in_owner = true
