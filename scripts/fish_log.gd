@@ -18,7 +18,7 @@ const SHEET_HEIGHT: int = Fish.SPRITE_SIZE * NUM_SIZES
 var sprites: Array[Sprite2D]
 var labels: Array[Label]
 var all_fish: Array[Array] = []
-var current_page: Fish.Colour = 0 as Fish.Colour
+var current_page: int = 0
 
 
 func _ready() -> void:
