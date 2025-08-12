@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://bvymecfklupxj"]
+[gd_scene load_steps=13 format=3 uid="uid://bvymecfklupxj"]
 
 [ext_resource type="Texture2D" uid="uid://dpee3urjbjccd" path="res://assets/sprites/bobber-spritesheet.png" id="1_2wku4"]
 [ext_resource type="Script" uid="uid://og60bq0gxfsm" path="res://scripts/bobber.gd" id="1_rn3pg"]
+[ext_resource type="FontFile" uid="uid://daony176pqech" path="res://assets/fonts/Kenney Mini.ttf" id="3_1y8pg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rn3pg"]
 atlas = ExtResource("1_2wku4")
@@ -70,5 +71,25 @@ animations = [{
 [node name="Bobber" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_jsxrf")
 autoplay = "default"
-frame_progress = 0.407039
+frame_progress = 0.713043
 script = ExtResource("1_rn3pg")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -3.0
+offset_top = -12.0
+offset_right = 5.0
+offset_bottom = -2.0
+theme_override_colors/font_color = Color(1, 0.639216, 0, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("3_1y8pg")
+theme_override_font_sizes/font_size = 8
+text = "!"
+horizontal_alignment = 1
+
+[node name="CastTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="BiteTimer" type="Timer" parent="."]
+one_shot = true
