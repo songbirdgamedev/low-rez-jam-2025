@@ -4,7 +4,9 @@ extends AnimatedSprite2D
 @onready var label: Label = $Label
 @onready var cast_timer: Timer = $CastTimer
 @onready var bite_timer: Timer = $BiteTimer
-@onready var message: CanvasLayer = %Message
+
+
+signal bite_missed
 
 
 func _ready() -> void:
@@ -15,6 +17,7 @@ func _ready() -> void:
 
 
 func show_bobber() -> void:
+	play("default")
 	show()
 	# make sound
 
@@ -27,6 +30,10 @@ func hide_bobber() -> void:
 	# make sound
 
 
+func hook_fish() -> void:
+	bite_timer.stop()
+
+
 func _fish_bite() -> void:
 	pause()
 	label.show()
@@ -37,4 +44,4 @@ func _fish_bite() -> void:
 func _fish_got_away() -> void:
 	hide()
 	label.hide()
-	message.show_text("it got away...")
+	bite_missed.emit()

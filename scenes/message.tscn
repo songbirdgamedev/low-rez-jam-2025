@@ -17,4 +17,4 @@ text = "it got away..."
 horizontal_alignment = 1
 
 [node name="Timer" type="Timer" parent="Label"]
-wait_time = 2.0
+wait_time = 1.5

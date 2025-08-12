@@ -71,7 +71,7 @@ animations = [{
 [node name="Bobber" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_jsxrf")
 autoplay = "default"
-frame_progress = 0.713043
+frame_progress = 0.644234
 script = ExtResource("1_rn3pg")
 
 [node name="Label" type="Label" parent="."]
@@ -92,4 +92,5 @@ wait_time = 5.0
 one_shot = true
 
 [node name="BiteTimer" type="Timer" parent="."]
+wait_time = 1.5
 one_shot = true

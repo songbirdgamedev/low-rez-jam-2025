@@ -3,6 +3,8 @@ extends Node
 
 @onready var fisher: Fisher = %Fisher
 @onready var bobber: AnimatedSprite2D = %Bobber
+@onready var minigame: CanvasLayer = %Minigame
+@onready var message: CanvasLayer = %Message
 @onready var fish_log: CanvasLayer = %FishLog
 
 
@@ -10,6 +12,10 @@ const MIN_SIZE: float = 1.0
 const SIZE_ALLOWANCE: float = 6.0
 const PRECISION: float = 0.1
 
+var random_float: float
+var random_inches: float
+var inches: float
+var new_fish: Fish
 var current_state: State = State.READY
 
 enum State {
@@ -18,6 +24,10 @@ enum State {
 	HOOKED,
 	CAUGHT
 }
+
+
+func _ready() -> void:
+	bobber.bite_missed.connect(_miss_fish)
 
 
 func _process(_delta: float) -> void:
@@ -45,18 +55,20 @@ func _cast_line() -> void:
 func _hook_fish() -> void:
 	print("hooking fish")
 	_change_state(State.HOOKED)
-	# start minigame
+
+	random_float = randf()
+	random_inches = randf_range(MIN_SIZE, fisher.size_inches + SIZE_ALLOWANCE)
+	inches = snappedf(random_inches, PRECISION)
+
+	new_fish = Fish.new(random_float, inches)
+	bobber.hook_fish()
+	minigame.start(new_fish.colour)
 
 
 func _catch_fish() -> void:
 	print("catching fish")
 	_change_state(State.CAUGHT)
 
-	var random_float: float = randf()
-	var random_inches: float = randf_range(MIN_SIZE, fisher.size_inches + SIZE_ALLOWANCE)
-	var inches: float = snappedf(random_inches, PRECISION)
-
-	var new_fish = Fish.new(random_float, inches)
 	fish_log.add_fish(new_fish)
 
 	# play animation of fish coming out of water
@@ -69,7 +81,7 @@ func _catch_fish() -> void:
 
 func _miss_fish() -> void:
 	# play animation
-	bobber.hide_bobber()
+	message.show_text("it got away...")
 	_change_state(State.READY)
 
 
