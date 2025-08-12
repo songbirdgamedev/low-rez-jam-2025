@@ -68,3 +68,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_22ed1")
 }
 autoplay = "move"
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
