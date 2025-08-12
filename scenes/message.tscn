@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://6i1ih1odvwoq"]
+
+[ext_resource type="FontFile" uid="uid://daony176pqech" path="res://assets/fonts/Kenney Mini.ttf" id="1_11qlq"]
+[ext_resource type="Script" uid="uid://bsgtco4v7hopp" path="res://scripts/message.gd" id="1_x5w8s"]
+
+[node name="Message" type="CanvasLayer"]
+script = ExtResource("1_x5w8s")
+
+[node name="Label" type="Label" parent="."]
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = 18.0
+theme_override_colors/font_color = Color(1, 0.945098, 0.909804, 1)
+theme_override_fonts/font = ExtResource("1_11qlq")
+theme_override_font_sizes/font_size = 8
+text = "it got away..."
+horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="Label"]
+wait_time = 2.0
