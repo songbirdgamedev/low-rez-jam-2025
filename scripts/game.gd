@@ -1,4 +1,5 @@
-extends Node
+class_name Game
+extends Node2D
 
 
 @onready var fisher: Fisher = %Fisher
@@ -21,19 +22,14 @@ var current_state: State = State.READY
 enum State {
 	READY,
 	WAITING,
-	HOOKED,
-	CAUGHT
+	BITE,
+	HOOKED
 }
 
 
-signal line_cast
-signal fish_hooked
-signal fish_missed
-signal fish_caught
-
-
 func _ready() -> void:
-	bobber.bite_missed.connect(_miss_fish)
+	bobber.cast_timer.timeout.connect(_on_cast_timer_timeout)
+	bobber.bite_timer.timeout.connect(_on_bite_timer_timeout)
 
 
 func _process(_delta: float) -> void:
@@ -44,21 +40,18 @@ func _process(_delta: float) -> void:
 		State.READY:
 			_cast_line()
 		State.WAITING:
-			# check if fish bite first
+			_miss_cast()
+		State.BITE:
 			_hook_fish()
 		State.HOOKED:
 			_attempt_catch()
 
 
 func _cast_line() -> void:
-	print("casting line")
-	line_cast.emit()
 	_change_state(State.WAITING)
 
 
 func _hook_fish() -> void:
-	print("hooking fish")
-	fish_hooked.emit()
 	_change_state(State.HOOKED)
 
 	random_float = randf()
@@ -76,7 +69,7 @@ func _attempt_catch() -> void:
 		0:
 			_miss_fish()
 		1:
-			message.show_text("keep going...")
+			message.show_text("keep trying!")
 			minigame.start(new_fish.colour)
 		2:
 			_catch_fish()
@@ -85,10 +78,6 @@ func _attempt_catch() -> void:
 
 
 func _catch_fish() -> void:
-	print("catching fish")
-	fish_caught.emit()
-	_change_state(State.CAUGHT)
-
 	fish_log.add_fish(new_fish)
 
 	# play animation of fish coming out of water
@@ -98,10 +87,22 @@ func _catch_fish() -> void:
 	_change_state(State.READY)
 
 
+func _miss_cast() -> void:
+	message.show_text("nothing :(")
+	_change_state(State.READY)
+
+
 func _miss_fish() -> void:
-	fish_missed.emit()
 	# play animation
 	message.show_text("it got away...")
+	_change_state(State.READY)
+
+
+func _on_cast_timer_timeout() -> void:
+	_change_state(State.BITE)
+
+
+func _on_bite_timer_timeout() -> void:
 	_change_state(State.READY)
 
 
@@ -110,10 +111,10 @@ func _change_state(next_state: State) -> void:
 
 	match next_state:
 		State.READY:
-			print("Changing state to State.READY")
+			bobber.hide_bobber()
 		State.WAITING:
-			print("Changing state to State.WAITING")
+			bobber.show_bobber()
+		State.BITE:
+			bobber.show_label()
 		State.HOOKED:
-			print("Changing state to State.HOOKED")
-		State.CAUGHT:
-			print("Changing state to State.CAUGHT")
+			bobber.hook_fish()
