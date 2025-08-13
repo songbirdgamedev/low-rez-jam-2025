@@ -8,16 +8,8 @@ extends Node2D
 @onready var message: CanvasLayer = %Message
 @onready var fish_log: CanvasLayer = %FishLog
 
-
-const MIN_SIZE: float = 1.0
-const SIZE_ALLOWANCE: float = 6.0
-const PRECISION: float = 0.1
-
-var random_float: float
-var random_inches: float
-var inches: float
-var new_fish: Fish
 var current_state: State = State.READY
+var new_fish: Fish
 
 enum State {
 	READY,
@@ -54,11 +46,7 @@ func _cast_line() -> void:
 func _hook_fish() -> void:
 	_change_state(State.HOOKED)
 
-	random_float = randf()
-	random_inches = randf_range(MIN_SIZE, fisher.size_inches + SIZE_ALLOWANCE)
-	inches = snappedf(random_inches, PRECISION)
-
-	new_fish = Fish.new(random_float, inches)
+	new_fish = fisher.hook_fish()
 	minigame.start(new_fish.colour)
 
 
@@ -81,7 +69,8 @@ func _catch_fish() -> void:
 	fish_log.add_fish(new_fish)
 
 	# play animation of fish coming out of water
-	if inches > fisher.size_inches:
+
+	if new_fish.size_inches > fisher.size_inches:
 		fisher.replace_fisher(new_fish)
 
 	_change_state(State.READY)
