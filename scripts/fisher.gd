@@ -15,7 +15,12 @@ func hook_fish() -> Fish:
 	return Fish.new(random_float, inches)
 
 
-func replace_fisher(new_fish: Fish) -> void:
+func check_size(new_fish: Fish) -> void:
+	if new_fish.size_inches > size_inches:
+		_replace_fisher(new_fish)
+
+
+func _replace_fisher(new_fish: Fish) -> void:
 	# play animation
 
 	colour = new_fish.colour

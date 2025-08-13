@@ -17,3 +17,7 @@ func _hide_text() -> void:
 func show_text(message: String) -> void:
 	label.text = message
 	timer.start()
+
+
+func show_failure_text() -> void:
+	show_text("it got away...")

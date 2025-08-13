@@ -22,6 +22,7 @@ enum State {
 func _ready() -> void:
 	bobber.cast_timer.timeout.connect(_on_cast_timer_timeout)
 	bobber.bite_timer.timeout.connect(_on_bite_timer_timeout)
+	minigame.minigame_over.connect(_on_minigame_end)
 
 
 func _process(_delta: float) -> void:
@@ -36,7 +37,7 @@ func _process(_delta: float) -> void:
 		State.BITE:
 			_hook_fish()
 		State.HOOKED:
-			_attempt_catch()
+			minigame.stop_minigame()
 
 
 func _cast_line() -> void:
@@ -47,33 +48,7 @@ func _hook_fish() -> void:
 	_change_state(State.HOOKED)
 
 	new_fish = fisher.hook_fish()
-	minigame.start(new_fish.colour)
-
-
-func _attempt_catch() -> void:
-	var result: Minigame.Result = minigame.end()
-
-	match result:
-		0:
-			_miss_fish()
-		1:
-			message.show_text("keep trying!")
-			minigame.start(new_fish.colour)
-		2:
-			_catch_fish()
-		3:
-			_catch_fish()
-
-
-func _catch_fish() -> void:
-	fish_log.add_fish(new_fish)
-
-	# play animation of fish coming out of water
-
-	if new_fish.size_inches > fisher.size_inches:
-		fisher.replace_fisher(new_fish)
-
-	_change_state(State.READY)
+	minigame.start_minigame(new_fish.colour)
 
 
 func _miss_cast() -> void:
@@ -83,7 +58,7 @@ func _miss_cast() -> void:
 
 func _miss_fish() -> void:
 	# play animation
-	message.show_text("it got away...")
+	message.show_failure_text()
 	_change_state(State.READY)
 
 
@@ -92,7 +67,16 @@ func _on_cast_timer_timeout() -> void:
 
 
 func _on_bite_timer_timeout() -> void:
+	_miss_fish()
+
+
+func _on_minigame_end(result: Minigame.Result) -> void:
 	_change_state(State.READY)
+
+	if result != 0:
+		# play animation of fish coming out of water
+		fish_log.add_fish(new_fish)
+		fisher.check_size(new_fish)
 
 
 func _change_state(next_state: State) -> void:
