@@ -1,84 +1,84 @@
-[gd_scene load_steps=13 format=3 uid="uid://bvymecfklupxj"]
+[gd_scene load_steps=7 format=3 uid="uid://bvymecfklupxj"]
 
 [ext_resource type="Texture2D" uid="uid://dpee3urjbjccd" path="res://assets/sprites/bobber-spritesheet.png" id="1_2wku4"]
 [ext_resource type="Script" uid="uid://og60bq0gxfsm" path="res://scripts/bobber.gd" id="1_rn3pg"]
 [ext_resource type="FontFile" uid="uid://daony176pqech" path="res://assets/fonts/Kenney Mini.ttf" id="3_1y8pg"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rn3pg"]
-atlas = ExtResource("1_2wku4")
-region = Rect2(0, 0, 8, 8)
+[sub_resource type="Animation" id="Animation_1y8pg"]
+resource_name = "move"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 1), Vector2(-1, 1), Vector2(-1, 0), Vector2(0, 0), Vector2(0, 1), Vector2(1, 1), Vector2(1, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Line:points")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [PackedVector2Array(0, -1, 13, -19), PackedVector2Array(0, 0, 13, -19), PackedVector2Array(-1, 0, 13, -19), PackedVector2Array(-1, -1, 13, -19), PackedVector2Array(0, -1, 13, -19), PackedVector2Array(0, 0, 13, -19), PackedVector2Array(1, 0, 13, -19), PackedVector2Array(1, -1, 13, -19), PackedVector2Array(0, -1, 13, -19)]
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1y8pg"]
-atlas = ExtResource("1_2wku4")
-region = Rect2(8, 0, 8, 8)
+[sub_resource type="Animation" id="Animation_4o5is"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Line:points")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedVector2Array(0, -1, 13, -19)]
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4o5is"]
-atlas = ExtResource("1_2wku4")
-region = Rect2(16, 0, 8, 8)
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1bgds"]
+_data = {
+&"RESET": SubResource("Animation_4o5is"),
+&"move": SubResource("Animation_1y8pg")
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1bgds"]
-atlas = ExtResource("1_2wku4")
-region = Rect2(24, 0, 8, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5btnv"]
-atlas = ExtResource("1_2wku4")
-region = Rect2(32, 0, 8, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4f4en"]
-atlas = ExtResource("1_2wku4")
-region = Rect2(40, 0, 8, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_su5i5"]
-atlas = ExtResource("1_2wku4")
-region = Rect2(48, 0, 8, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pghgi"]
-atlas = ExtResource("1_2wku4")
-region = Rect2(56, 0, 8, 8)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_jsxrf"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rn3pg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1y8pg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4o5is")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1bgds")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5btnv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4f4en")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_su5i5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pghgi")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[node name="Bobber" type="AnimatedSprite2D"]
-sprite_frames = SubResource("SpriteFrames_jsxrf")
-autoplay = "default"
-frame_progress = 0.0370531
+[node name="Bobber" type="Node2D"]
 script = ExtResource("1_rn3pg")
 
-[node name="Label" type="Label" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_2wku4")
+region_enabled = true
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Label" type="Label" parent="Sprite"]
 visible = false
-offset_left = -3.0
+offset_left = -4.0
 offset_top = -12.0
-offset_right = 5.0
+offset_right = 4.0
 offset_bottom = -2.0
 theme_override_colors/font_color = Color(1, 0.639216, 0, 1)
 theme_override_constants/line_spacing = 0
@@ -87,6 +87,12 @@ theme_override_font_sizes/font_size = 8
 text = "!"
 horizontal_alignment = 1
 
+[node name="Line" type="Line2D" parent="."]
+z_index = -1
+points = PackedVector2Array(0, -1, 13, -19)
+width = 1.0
+default_color = Color(0.760784, 0.764706, 0.780392, 1)
+
 [node name="CastTimer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
@@ -94,3 +100,9 @@ one_shot = true
 [node name="BiteTimer" type="Timer" parent="."]
 wait_time = 1.5
 one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_1bgds")
+}
+autoplay = "move"

@@ -3,7 +3,7 @@ extends Node2D
 
 
 @onready var fisher: Fisher = %Fisher
-@onready var bobber: AnimatedSprite2D = %Bobber
+@onready var bobber: Node2D = %Bobber
 @onready var minigame: CanvasLayer = %Minigame
 @onready var message: CanvasLayer = %Message
 @onready var fish_log: CanvasLayer = %FishLog

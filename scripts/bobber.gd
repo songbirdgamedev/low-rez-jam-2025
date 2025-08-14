@@ -1,10 +1,11 @@
 class_name Bobber
-extends AnimatedSprite2D
+extends Node2D
 
 
-@onready var label: Label = $Label
+@onready var label: Label = $Sprite/Label
 @onready var cast_timer: Timer = $CastTimer
 @onready var bite_timer: Timer = $BiteTimer
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 func _ready() -> void:
@@ -23,7 +24,7 @@ func hide_bobber() -> void:
 
 func show_bobber() -> void:
 	# animate cast
-	play("default")
+	animation_player.play("move")
 	show()
 	# make sound
 
@@ -31,7 +32,7 @@ func show_bobber() -> void:
 
 
 func show_label() -> void:
-	pause()
+	animation_player.pause()
 	label.show()
 	# make sound
 
