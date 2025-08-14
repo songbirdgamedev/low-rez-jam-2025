@@ -11,6 +11,7 @@ extends CanvasLayer
 @onready var label_l: Label = %LabelL
 @onready var label_xl: Label = %LabelXL
 
+@onready var page_number: Label = %PageNumber
 @onready var left_arrow: TextureRect = %LeftArrow
 @onready var right_arrow: TextureRect = %RightArrow
 
@@ -76,6 +77,7 @@ func show_log() -> void:
 func _show_page(page: Array) -> void:
 	_set_sprite_regions(page)
 	_set_labels(page)
+	_set_page_number()
 	_set_arrow_visibility()
 
 	if not is_visible():
@@ -98,6 +100,10 @@ func _set_labels(page: Array) -> void:
 			labels[i].text = str(page[i].biggest)
 		else:
 			labels[i].text = ""
+
+
+func _set_page_number() -> void:
+	page_number.text = str(current_page + 1)
 
 
 func _set_arrow_visibility() -> void:
