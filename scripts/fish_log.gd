@@ -67,8 +67,6 @@ func add_fish(new: Fish) -> void:
 		all_fish[new.colour][new.size_category].biggest = new.size_inches
 		print("new size record")
 
-	print(all_fish)
-
 
 func show_log() -> void:
 	_show_page(all_fish[current_page])

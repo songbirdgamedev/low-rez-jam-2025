@@ -7,6 +7,7 @@ extends Node2D
 @onready var minigame: CanvasLayer = %Minigame
 @onready var message: CanvasLayer = %Message
 @onready var fish_log: CanvasLayer = %FishLog
+@onready var particle: GPUParticles2D = %Particle
 
 var current_state: State = State.READY
 var new_fish: Fish
@@ -23,6 +24,7 @@ func _ready() -> void:
 	bobber.cast_timer.timeout.connect(_on_cast_timer_timeout)
 	bobber.bite_timer.timeout.connect(_on_bite_timer_timeout)
 	minigame.minigame_over.connect(_on_minigame_end)
+	particle.finished.connect(_handle_replace_fisher)
 
 
 func _process(_delta: float) -> void:
@@ -79,7 +81,13 @@ func _on_minigame_end(result: Minigame.Result) -> void:
 	if result != 0:
 		# play animation of fish coming out of water
 		fish_log.add_fish(new_fish)
-		fisher.check_size(new_fish)
+		if fisher.check_size(new_fish):
+			particle.set_emitting(true)
+
+
+func _handle_replace_fisher() -> void:
+	message.show_text("fisher eaten!")
+	fisher.replace_fisher(new_fish)
 
 
 func _change_state(next_state: State) -> void:
