@@ -95,9 +95,9 @@ func _change_state(next_state: State) -> void:
 
 	match next_state:
 		State.READY:
-			bobber.hide_bobber()
+			bobber.reel_in()
 		State.WAITING:
-			bobber.show_bobber()
+			bobber.cast_line()
 		State.BITE:
 			bobber.show_label()
 		State.HOOKED:
