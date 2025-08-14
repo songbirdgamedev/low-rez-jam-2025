@@ -11,6 +11,9 @@ extends CanvasLayer
 @onready var label_l: Label = %LabelL
 @onready var label_xl: Label = %LabelXL
 
+@onready var left_arrow: TextureRect = %LeftArrow
+@onready var right_arrow: TextureRect = %RightArrow
+
 const NUM_COLOURS: int = 8
 const NUM_SIZES: int = 4
 const SHEET_HEIGHT: int = Fish.SPRITE_SIZE * NUM_SIZES
@@ -42,20 +45,15 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("menu"):
-		if is_visible():
-			hide()
-		else:
-			_show_page(all_fish[current_page])
-			show()
-	elif Input.is_action_just_pressed("left") and is_visible():
-		if current_page > 0:
-			current_page -= 1
-			_show_page(all_fish[current_page])
-	elif Input.is_action_just_pressed("right") and is_visible():
-		if current_page < 7:
-			current_page += 1
-			_show_page(all_fish[current_page])
+	if not is_visible():
+		return
+
+	elif Input.is_action_just_pressed("left") and current_page > 0:
+		current_page -= 1
+		_show_page(all_fish[current_page])
+	elif Input.is_action_just_pressed("right") and current_page < 7:
+		current_page += 1
+		_show_page(all_fish[current_page])
 
 
 func add_fish(new: Fish) -> void:
@@ -71,9 +69,17 @@ func add_fish(new: Fish) -> void:
 	print(all_fish)
 
 
+func show_log() -> void:
+	_show_page(all_fish[current_page])
+
+
 func _show_page(page: Array) -> void:
 	_set_sprite_regions(page)
 	_set_labels(page)
+	_set_arrow_visibility()
+
+	if not is_visible():
+		show()
 
 
 func _get_default_region(index: Fish.Size) -> Rect2i:
@@ -92,3 +98,13 @@ func _set_labels(page: Array) -> void:
 			labels[i].text = str(page[i].biggest)
 		else:
 			labels[i].text = ""
+
+
+func _set_arrow_visibility() -> void:
+	left_arrow.show()
+	right_arrow.show()
+
+	if current_page == 0:
+		left_arrow.hide()
+	elif current_page == 7:
+		right_arrow.hide()

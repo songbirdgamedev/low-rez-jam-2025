@@ -26,18 +26,21 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if not Input.is_action_just_pressed("confirm"):
-		return
-
-	match current_state:
-		State.READY:
-			_cast_line()
-		State.WAITING:
-			_miss_cast()
-		State.BITE:
-			_hook_fish()
-		State.HOOKED:
-			minigame.stop_minigame()
+	if Input.is_action_just_pressed("menu") and current_state == State.READY:
+		if fish_log.is_visible():
+			fish_log.hide()
+		else:
+			fish_log.show_log()
+	elif Input.is_action_just_pressed("confirm") and not fish_log.is_visible():
+		match current_state:
+			State.READY:
+				_cast_line()
+			State.WAITING:
+				_miss_cast()
+			State.BITE:
+				_hook_fish()
+			State.HOOKED:
+				minigame.stop_minigame()
 
 
 func _cast_line() -> void:
