@@ -51,9 +51,11 @@ func _process(_delta: float) -> void:
 
 	elif Input.is_action_just_pressed("left") and current_page > 0:
 		current_page -= 1
+		AudioManager.play_turn_page()
 		_show_page(all_fish[current_page])
 	elif Input.is_action_just_pressed("right") and current_page < 7:
 		current_page += 1
+		AudioManager.play_turn_page()
 		_show_page(all_fish[current_page])
 
 

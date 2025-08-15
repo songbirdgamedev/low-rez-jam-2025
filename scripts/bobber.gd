@@ -22,7 +22,7 @@ func reel_in() -> void:
 	if not cast_timer.is_stopped():
 		cast_timer.stop()
 
-	# make sound
+	AudioManager.play_splash()
 	label.hide()
 	animation_player.play("reel")
 
@@ -33,7 +33,7 @@ func _on_animation_finished(animation_name: String) -> void:
 
 
 func _on_cast_line_finished() -> void:
-	# make sound
+	AudioManager.play_splash()
 	animation_player.play("move")
 	cast_timer.start(randf_range(2.0, 5.0))
 
@@ -41,6 +41,5 @@ func _on_cast_line_finished() -> void:
 func _on_cast_timer_timeout() -> void:
 	animation_player.pause()
 	label.show()
-	# make sound
-
+	AudioManager.play_bloop()
 	bite_timer.start() # maybe change time based on rarity?

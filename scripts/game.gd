@@ -39,8 +39,10 @@ func _process(_delta: float) -> void:
 
 	if Input.is_action_just_pressed("menu") and current_state == State.READY:
 		if fish_log.is_visible():
+			AudioManager.play_close_log()
 			fish_log.hide()
 		else:
+			AudioManager.play_open_log()
 			fish_log.show_log()
 	elif Input.is_action_just_pressed("confirm") and not fish_log.is_visible():
 		match current_state:
@@ -56,6 +58,7 @@ func _process(_delta: float) -> void:
 				new_fish = fisher.hook_fish()
 
 				_change_state(State.HOOKED)
+				AudioManager.play_reel()
 				minigame.start_minigame(new_fish.colour)
 			State.HOOKED:
 				minigame.stop_minigame()
@@ -72,11 +75,15 @@ func _on_bite_timer_timeout() -> void:
 
 
 func _on_minigame_end(result: Minigame.Result) -> void:
+	AudioManager.stop_reel()
 	bobber.reel_in()
 
 	if result == 0:
 		_change_state(State.READY)
 		return
+
+	if result == 2:
+		AudioManager.play_perfect_catch()
 
 	_change_state(State.CAUGHT)
 	await bobber.animation_player.animation_finished
@@ -86,6 +93,7 @@ func _on_minigame_end(result: Minigame.Result) -> void:
 func _on_fish_ready() -> void:
 	var fish_message: String = fish_log.add_fish(new_fish)
 	if fish_message != "":
+		AudioManager.play_normal_catch()
 		message.show_text(fish_message)
 		await message.timer.timeout
 	else:
@@ -95,6 +103,7 @@ func _on_fish_ready() -> void:
 	if fisher.check_size(new_fish):
 		message.show_text("new biggest!")
 		fish_sprite.eat_fisher()
+		AudioManager.play_chomp()
 	else:
 		fish_sprite.reset()
 

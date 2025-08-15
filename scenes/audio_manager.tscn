@@ -1,0 +1,51 @@
+[gd_scene load_steps=11 format=3 uid="uid://bofidacep8rj"]
+
+[ext_resource type="Script" uid="uid://sxb10cf4eh3s" path="res://scripts/audio_manager.gd" id="1_m6ggh"]
+[ext_resource type="AudioStream" uid="uid://cmeqspmb87gvq" path="res://assets/sounds/bloop.wav" id="2_aoitu"]
+[ext_resource type="AudioStream" uid="uid://brd0hmseguome" path="res://assets/sounds/reel.wav" id="3_njtn3"]
+[ext_resource type="AudioStream" uid="uid://ck2ylnxomr3ft" path="res://assets/sounds/splash.wav" id="4_kq7b2"]
+[ext_resource type="AudioStream" uid="uid://rqnptcrvfic7" path="res://assets/sounds/chomp.wav" id="5_aoitu"]
+[ext_resource type="AudioStream" uid="uid://d21fo8pkrg0t" path="res://assets/sounds/point_normal.wav" id="6_kq7b2"]
+[ext_resource type="AudioStream" uid="uid://d23kutk4lys8x" path="res://assets/sounds/point_special.wav" id="7_02gw7"]
+[ext_resource type="AudioStream" uid="uid://pgr4hjwijxy8" path="res://assets/sounds/cursor_select.wav" id="8_064dn"]
+[ext_resource type="AudioStream" uid="uid://7dns7i8731q2" path="res://assets/sounds/cursor_back.wav" id="9_ic5jq"]
+[ext_resource type="AudioStream" uid="uid://bvjix7wie7g4w" path="res://assets/sounds/cursor_move.wav" id="10_if78k"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_m6ggh")
+
+[node name="Bloop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_aoitu")
+volume_db = -6.0
+
+[node name="Reel" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_njtn3")
+volume_db = -12.0
+
+[node name="Splash" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_kq7b2")
+volume_db = -15.0
+
+[node name="Chomp" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_aoitu")
+volume_db = -18.0
+
+[node name="NormalCatch" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_kq7b2")
+volume_db = -6.0
+
+[node name="PerfectCatch" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_02gw7")
+volume_db = -6.0
+
+[node name="OpenLog" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_064dn")
+volume_db = -6.0
+
+[node name="CloseLog" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_ic5jq")
+volume_db = -6.0
+
+[node name="TurnPage" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_if78k")
+volume_db = -6.0
