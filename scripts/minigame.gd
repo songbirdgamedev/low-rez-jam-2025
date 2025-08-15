@@ -71,6 +71,7 @@ func stop_minigame() -> void:
 
 	start_timer.stop()
 	end_timer.start()
+	_send_result()
 
 
 func _on_visibility_changed() -> void:
@@ -92,7 +93,6 @@ func _on_retry_timer_timeout() -> void:
 
 func _on_end_timer_timeout() -> void:
 	_hide_and_reset()
-	_send_result()
 
 
 func _send_result() -> void:
