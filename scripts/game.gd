@@ -109,7 +109,6 @@ func _on_fish_ready() -> void:
 
 
 func _on_fisher_eaten() -> void:
-	message.show_text("fisher eaten!")
 	fisher.replace_fisher(new_fish)
 
 

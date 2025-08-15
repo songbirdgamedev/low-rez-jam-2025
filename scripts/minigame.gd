@@ -67,7 +67,7 @@ func stop_minigame() -> void:
 		result = Result.CAUGHT
 	else:
 		result = Result.PERFECT
-		message.show_text("perfect catch!")
+		message.show_text("perfect!")
 
 	start_timer.stop()
 	end_timer.start()
