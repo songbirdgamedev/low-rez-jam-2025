@@ -28,6 +28,12 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
+	if (
+		bobber.animation_player.get_current_animation() == "cast" or
+		bobber.animation_player.get_current_animation() == "reel"
+	):
+		return
+
 	if Input.is_action_just_pressed("menu") and current_state == State.READY:
 		if fish_log.is_visible():
 			fish_log.hide()
@@ -36,35 +42,20 @@ func _process(_delta: float) -> void:
 	elif Input.is_action_just_pressed("confirm") and not fish_log.is_visible():
 		match current_state:
 			State.READY:
-				_cast_line()
+				bobber.cast_line()
+				_change_state(State.WAITING)
 			State.WAITING:
-				_miss_cast()
+				bobber.reel_in()
+				message.show_text("nothing :(")
+				_change_state(State.READY)
 			State.BITE:
-				_hook_fish()
+				bobber.bite_timer.stop()
+				new_fish = fisher.hook_fish()
+
+				_change_state(State.HOOKED)
+				minigame.start_minigame(new_fish.colour)
 			State.HOOKED:
 				minigame.stop_minigame()
-
-
-func _cast_line() -> void:
-	_change_state(State.WAITING)
-
-
-func _hook_fish() -> void:
-	_change_state(State.HOOKED)
-
-	new_fish = fisher.hook_fish()
-	minigame.start_minigame(new_fish.colour)
-
-
-func _miss_cast() -> void:
-	message.show_text("nothing :(")
-	_change_state(State.READY)
-
-
-func _miss_fish() -> void:
-	# play animation
-	message.show_failure_text()
-	_change_state(State.READY)
 
 
 func _on_cast_timer_timeout() -> void:
@@ -72,12 +63,16 @@ func _on_cast_timer_timeout() -> void:
 
 
 func _on_bite_timer_timeout() -> void:
-	_miss_fish()
+	bobber.reel_in()
+	message.show_failure_text()
+	_change_state(State.READY)
 
 
 func _on_minigame_end(result: Minigame.Result) -> void:
+	bobber.reel_in()
 	_change_state(State.READY)
 
+	await bobber.animation_player.animation_finished
 	if result != 0:
 		# play animation of fish coming out of water
 		fish_log.add_fish(new_fish)
@@ -92,13 +87,3 @@ func _handle_replace_fisher() -> void:
 
 func _change_state(next_state: State) -> void:
 	current_state = next_state
-
-	match next_state:
-		State.READY:
-			bobber.reel_in()
-		State.WAITING:
-			bobber.cast_line()
-		State.BITE:
-			bobber.show_label()
-		State.HOOKED:
-			bobber.hook_fish()

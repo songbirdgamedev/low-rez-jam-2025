@@ -4,35 +4,6 @@
 [ext_resource type="Script" uid="uid://og60bq0gxfsm" path="res://scripts/bobber.gd" id="1_rn3pg"]
 [ext_resource type="FontFile" uid="uid://daony176pqech" path="res://assets/fonts/Kenney Mini.ttf" id="3_1y8pg"]
 
-[sub_resource type="Animation" id="Animation_1y8pg"]
-resource_name = "move"
-length = 1.6
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, 1), Vector2(-1, 1), Vector2(-1, 0), Vector2(0, 0), Vector2(0, 1), Vector2(1, 1), Vector2(1, 0), Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Line:points")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [PackedVector2Array(0, -1, 13, -19), PackedVector2Array(0, 0, 13, -19), PackedVector2Array(-1, 0, 13, -19), PackedVector2Array(-1, -1, 13, -19), PackedVector2Array(0, -1, 13, -19), PackedVector2Array(0, 0, 13, -19), PackedVector2Array(1, 0, 13, -19), PackedVector2Array(1, -1, 13, -19), PackedVector2Array(0, -1, 13, -19)]
-}
-
 [sub_resource type="Animation" id="Animation_4o5is"]
 length = 0.001
 tracks/0/type = "value"
@@ -86,6 +57,35 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [PackedVector2Array(24, -9, 13, -19), PackedVector2Array(10, -7, 13, -19), PackedVector2Array(0, -1, 13, -19)]
+}
+
+[sub_resource type="Animation" id="Animation_1y8pg"]
+resource_name = "move"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 1), Vector2(-1, 1), Vector2(-1, 0), Vector2(0, 0), Vector2(0, 1), Vector2(1, 1), Vector2(1, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Line:points")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [PackedVector2Array(0, -1, 13, -19), PackedVector2Array(0, 0, 13, -19), PackedVector2Array(-1, 0, 13, -19), PackedVector2Array(-1, -1, 13, -19), PackedVector2Array(0, -1, 13, -19), PackedVector2Array(0, 0, 13, -19), PackedVector2Array(1, 0, 13, -19), PackedVector2Array(1, -1, 13, -19), PackedVector2Array(0, -1, 13, -19)]
 }
 
 [sub_resource type="Animation" id="Animation_5btnv"]

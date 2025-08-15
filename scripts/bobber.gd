@@ -11,13 +11,11 @@ extends Node2D
 func _ready() -> void:
 	label.hide()
 	animation_player.animation_finished.connect(_on_animation_finished)
+	cast_timer.timeout.connect(_on_cast_timer_timeout)
 
 
-func _on_animation_finished(animation_name: String) -> void:
-	if animation_name == "cast":
-		_on_cast_line_finished()
-	elif animation_name == "reel":
-		_on_reel_in_finished()
+func cast_line() -> void:
+	animation_player.play("cast")
 
 
 func reel_in() -> void:
@@ -29,12 +27,9 @@ func reel_in() -> void:
 	animation_player.play("reel")
 
 
-func _on_reel_in_finished() -> void:
-	pass # send signal to game to change to ready
-
-
-func cast_line() -> void:
-	animation_player.play("cast")
+func _on_animation_finished(animation_name: String) -> void:
+	if animation_name == "cast":
+		_on_cast_line_finished()
 
 
 func _on_cast_line_finished() -> void:
@@ -43,13 +38,9 @@ func _on_cast_line_finished() -> void:
 	cast_timer.start(randf_range(2.0, 5.0))
 
 
-func show_label() -> void:
+func _on_cast_timer_timeout() -> void:
 	animation_player.pause()
 	label.show()
 	# make sound
 
 	bite_timer.start() # maybe change time based on rarity?
-
-
-func hook_fish() -> void:
-	bite_timer.stop()

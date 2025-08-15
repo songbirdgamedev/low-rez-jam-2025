@@ -50,6 +50,9 @@ func start_minigame(fish_colour: Fish.Colour) -> void:
 
 
 func stop_minigame() -> void:
+	if not animation_player.is_playing():
+		return
+
 	animation_player.pause()
 	var x: float = color_rect.get_position().x
 
