@@ -7,6 +7,7 @@ extends Node2D
 @onready var minigame: CanvasLayer = %Minigame
 @onready var message: CanvasLayer = %Message
 @onready var fish_log: CanvasLayer = %FishLog
+@onready var fish_sprite: Node2D = %FishSprite
 @onready var particle: GPUParticles2D = %Particle
 
 var current_state: State = State.READY
@@ -16,7 +17,8 @@ enum State {
 	READY,
 	WAITING,
 	BITE,
-	HOOKED
+	HOOKED,
+	CAUGHT
 }
 
 
@@ -24,6 +26,8 @@ func _ready() -> void:
 	bobber.cast_timer.timeout.connect(_on_cast_timer_timeout)
 	bobber.bite_timer.timeout.connect(_on_bite_timer_timeout)
 	minigame.minigame_over.connect(_on_minigame_end)
+	fish_sprite.fish_ready.connect(_on_fish_ready)
+	fish_sprite.catch_complete.connect(_on_catch_complete)
 	particle.finished.connect(_handle_replace_fisher)
 
 
@@ -70,14 +74,28 @@ func _on_bite_timer_timeout() -> void:
 
 func _on_minigame_end(result: Minigame.Result) -> void:
 	bobber.reel_in()
-	_change_state(State.READY)
 
+	if result == 0:
+		_change_state(State.READY)
+		return
+
+	_change_state(State.CAUGHT)
 	await bobber.animation_player.animation_finished
-	if result != 0:
-		# play animation of fish coming out of water
-		fish_log.add_fish(new_fish)
-		if fisher.check_size(new_fish):
-			particle.set_emitting(true)
+	fish_sprite.show_sprite(new_fish.sprite_region)
+
+
+func _on_fish_ready() -> void:
+	fish_log.add_fish(new_fish)
+
+	if fisher.check_size(new_fish):
+		fish_sprite.eat_fisher()
+		particle.set_emitting(true)
+	else:
+		fish_sprite.stay()
+
+
+func _on_catch_complete() -> void:
+	_change_state(State.READY)
 
 
 func _handle_replace_fisher() -> void:
