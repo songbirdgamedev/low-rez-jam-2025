@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://qrrmes6xgfok" path="res://scenes/minigame.tscn" id="3_p57ef"]
 [ext_resource type="PackedScene" uid="uid://bvymecfklupxj" path="res://scenes/bobber.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://cf1wnbstejut7" path="res://scenes/message.tscn" id="4_u5sy4"]
-[ext_resource type="PackedScene" path="res://scenes/rod.tscn" id="7_gee14"]
+[ext_resource type="PackedScene" uid="uid://bjjkmxqamv83p" path="res://scenes/rod.tscn" id="7_gee14"]
 [ext_resource type="PackedScene" uid="uid://e0qkit4xxrbk" path="res://scenes/fish_sprite.tscn" id="10_vtaks"]
 
 [node name="Game" type="Node2D"]
