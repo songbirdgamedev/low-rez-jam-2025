@@ -8,7 +8,6 @@ extends Node2D
 @onready var message: CanvasLayer = %Message
 @onready var fish_log: CanvasLayer = %FishLog
 @onready var fish_sprite: Node2D = %FishSprite
-@onready var particle: GPUParticles2D = %Particle
 
 var current_state: State = State.READY
 var new_fish: Fish
@@ -27,8 +26,8 @@ func _ready() -> void:
 	bobber.bite_timer.timeout.connect(_on_bite_timer_timeout)
 	minigame.minigame_over.connect(_on_minigame_end)
 	fish_sprite.fish_ready.connect(_on_fish_ready)
+	fish_sprite.fisher_eaten.connect(_on_fisher_eaten)
 	fish_sprite.catch_complete.connect(_on_catch_complete)
-	particle.finished.connect(_handle_replace_fisher)
 
 
 func _process(_delta: float) -> void:
@@ -85,22 +84,28 @@ func _on_minigame_end(result: Minigame.Result) -> void:
 
 
 func _on_fish_ready() -> void:
-	fish_log.add_fish(new_fish)
-
-	if fisher.check_size(new_fish):
-		fish_sprite.eat_fisher()
-		particle.set_emitting(true)
+	var fish_message: String = fish_log.add_fish(new_fish)
+	if fish_message != "":
+		message.show_text(fish_message)
+		await message.timer.timeout
 	else:
 		fish_sprite.stay()
+		return
+
+	if fisher.check_size(new_fish):
+		message.show_text("new biggest!")
+		fish_sprite.eat_fisher()
+	else:
+		fish_sprite.reset()
+
+
+func _on_fisher_eaten() -> void:
+	message.show_text("fisher eaten!")
+	fisher.replace_fisher(new_fish)
 
 
 func _on_catch_complete() -> void:
 	_change_state(State.READY)
-
-
-func _handle_replace_fisher() -> void:
-	message.show_text("fisher eaten!")
-	fisher.replace_fisher(new_fish)
 
 
 func _change_state(next_state: State) -> void:

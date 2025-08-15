@@ -57,15 +57,20 @@ func _process(_delta: float) -> void:
 		_show_page(all_fish[current_page])
 
 
-func add_fish(new: Fish) -> void:
+func add_fish(new: Fish) -> String:
+	var message: String = ""
+
 	if not all_fish[new.colour][new.size_category].caught:
 		all_fish[new.colour][new.size_category].caught = true
 		all_fish[new.colour][new.size_category].region = new.sprite_region
-		print("new fish")
+		message = "new fish!"
 
 	if all_fish[new.colour][new.size_category].biggest < new.size_inches:
 		all_fish[new.colour][new.size_category].biggest = new.size_inches
-		print("new size record")
+		if message == "":
+			message = "size record!"
+
+	return message
 
 
 func show_log() -> void:

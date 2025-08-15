@@ -5,6 +5,7 @@ extends Node2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 signal fish_ready
+signal fisher_eaten
 signal catch_complete
 
 
@@ -25,9 +26,16 @@ func stay() -> void:
 	animation_player.play("stay")
 
 
+func reset() -> void:
+	catch_complete.emit()
+	animation_player.play("RESET")
+
+
 func _on_animation_finished(animation_name: String) -> void:
 	if animation_name == "show":
 		fish_ready.emit()
-	elif animation_name == "eat" or animation_name == "stay":
-		catch_complete.emit()
-		animation_player.play("RESET")
+	elif animation_name == "eat":
+		fisher_eaten.emit()
+		reset()
+	elif animation_name == "stay":
+		reset()
