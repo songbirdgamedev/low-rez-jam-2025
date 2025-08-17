@@ -7,13 +7,13 @@
 script = ExtResource("1_x5w8s")
 
 [node name="Label" type="Label" parent="."]
-offset_top = 7.0
+offset_top = 6.0
 offset_right = 64.0
-offset_bottom = 17.0
+offset_bottom = 16.0
 theme_override_colors/font_color = Color(1, 0.945098, 0.909804, 1)
 theme_override_fonts/font = ExtResource("1_11qlq")
 theme_override_font_sizes/font_size = 8
-text = "it got away..."
+text = "all fish caught!"
 horizontal_alignment = 1
 
 [node name="Timer" type="Timer" parent="Label"]
