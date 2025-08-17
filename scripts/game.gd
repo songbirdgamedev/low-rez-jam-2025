@@ -6,12 +6,14 @@ extends Node2D
 @onready var bobber: Node2D = %Bobber
 @onready var minigame: CanvasLayer = %Minigame
 @onready var message: CanvasLayer = %Message
+@onready var score: CanvasLayer = %Score
 @onready var fish_log: CanvasLayer = %FishLog
 @onready var fish_sprite: Node2D = %FishSprite
 
 var ready_to_fish: bool = false
 var current_state: State = State.READY
 var new_fish: Fish
+var perfect_catch: bool
 
 enum State {
 	READY,
@@ -95,6 +97,9 @@ func _on_minigame_end(result: Minigame.Result) -> void:
 
 	if result == 2:
 		AudioManager.play_perfect_catch()
+		perfect_catch = true
+	else:
+		perfect_catch = false
 
 	_change_state(State.CAUGHT)
 	await bobber.animation_player.animation_finished
@@ -103,6 +108,8 @@ func _on_minigame_end(result: Minigame.Result) -> void:
 
 func _on_fish_ready() -> void:
 	var fish_message: String = fish_log.add_fish(new_fish)
+	score.update_score(new_fish, perfect_catch)
+
 	if fish_message != "":
 		AudioManager.play_normal_catch()
 		message.show_text(fish_message)

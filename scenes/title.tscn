@@ -5,22 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://ddfm7lvmi8t3f" path="res://assets/sprites/fishing-title-transparent.png" id="2_p6dhs"]
 [ext_resource type="FontFile" uid="uid://daony176pqech" path="res://assets/fonts/Kenney Mini.ttf" id="3_p6dhs"]
 
-[sub_resource type="Animation" id="Animation_wosw1"]
-resource_name = "title"
-length = 0.8
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TitleText:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(96, 32), Vector2(32, 32)]
-}
-
 [sub_resource type="Animation" id="Animation_p6dhs"]
 length = 0.001
 tracks/0/type = "value"
@@ -96,22 +80,6 @@ tracks/5/keys = {
 "values": [Vector2(68, 19)]
 }
 
-[sub_resource type="Animation" id="Animation_pyl7j"]
-resource_name = "label"
-length = 0.8
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Label:modulate")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_b3w7a"]
 resource_name = "fish_controls"
 length = 0.8
@@ -150,6 +118,22 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(32, 32), Vector2(-32, 32)]
+}
+
+[sub_resource type="Animation" id="Animation_pyl7j"]
+resource_name = "label"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_4rr2b"]
@@ -246,6 +230,22 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 8), Vector2(-64, 8)]
+}
+
+[sub_resource type="Animation" id="Animation_wosw1"]
+resource_name = "title"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TitleText:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(96, 32), Vector2(32, 32)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pyl7j"]

@@ -33,6 +33,7 @@ func _on_animation_finished(animation_name: String) -> void:
 	elif animation_name == "title":
 		animation_player.play("label")
 	elif animation_name == "start_game":
+		AudioManager.fade_out()
 		TransitionScreen.fade_to_black()
 	else:
 		animations_finished = true
@@ -43,17 +44,21 @@ func _advance_to_next() -> void:
 		Line.ZERO:
 			animations_finished = false
 			current_line = Line.ONE
+			AudioManager.play_perfect_catch()
 			animation_player.play("fish_controls")
 		Line.ONE:
 			animations_finished = false
 			current_line = Line.TWO
+			AudioManager.play_normal_catch()
 			animation_player.play("log_controls")
 		Line.TWO:
 			animations_finished = false
 			current_line = Line.THREE
+			AudioManager.play_normal_catch()
 			animation_player.play("nav_controls")
 		Line.THREE:
 			animations_finished = false
+			AudioManager.play_perfect_catch()
 			animation_player.play("start_game")
 
 

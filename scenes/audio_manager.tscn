@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://bofidacep8rj"]
+[gd_scene load_steps=15 format=3 uid="uid://bofidacep8rj"]
 
 [ext_resource type="Script" uid="uid://sxb10cf4eh3s" path="res://scripts/audio_manager.gd" id="1_m6ggh"]
 [ext_resource type="AudioStream" uid="uid://cmeqspmb87gvq" path="res://assets/sounds/bloop.wav" id="2_aoitu"]
+[ext_resource type="AudioStream" uid="uid://cyu36oen1hri4" path="res://assets/music/down-the-river-we-go.ogg" id="2_ic5jq"]
 [ext_resource type="AudioStream" uid="uid://brd0hmseguome" path="res://assets/sounds/reel.wav" id="3_njtn3"]
 [ext_resource type="AudioStream" uid="uid://ck2ylnxomr3ft" path="res://assets/sounds/splash.wav" id="4_kq7b2"]
 [ext_resource type="AudioStream" uid="uid://rqnptcrvfic7" path="res://assets/sounds/chomp.wav" id="5_aoitu"]
@@ -11,8 +12,54 @@
 [ext_resource type="AudioStream" uid="uid://7dns7i8731q2" path="res://assets/sounds/cursor_back.wav" id="9_ic5jq"]
 [ext_resource type="AudioStream" uid="uid://bvjix7wie7g4w" path="res://assets/sounds/cursor_move.wav" id="10_if78k"]
 
+[sub_resource type="Animation" id="Animation_ic5jq"]
+resource_name = "fade_out"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-12.0, -24.0]
+}
+
+[sub_resource type="Animation" id="Animation_if78k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-12.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8igv3"]
+_data = {
+&"RESET": SubResource("Animation_if78k"),
+&"fade_out": SubResource("Animation_ic5jq")
+}
+
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_m6ggh")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ic5jq")
+volume_db = -12.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Music"]
+libraries = {
+&"": SubResource("AnimationLibrary_8igv3")
+}
 
 [node name="Bloop" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_aoitu")

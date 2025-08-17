@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cijjd30ql0bic"]
+
+[ext_resource type="FontFile" uid="uid://daony176pqech" path="res://assets/fonts/Kenney Mini.ttf" id="1_8juob"]
+[ext_resource type="Script" uid="uid://coubaitruppts" path="res://scripts/score.gd" id="1_bak1h"]
+
+[node name="Score" type="CanvasLayer"]
+script = ExtResource("1_bak1h")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 1.0
+offset_top = -2.0
+offset_right = 63.0
+offset_bottom = 8.0
+theme_override_colors/font_color = Color(0.670588, 0.321569, 0.211765, 1)
+theme_override_fonts/font = ExtResource("1_8juob")
+theme_override_font_sizes/font_size = 8
+text = "0"
