@@ -1,0 +1,157 @@
+[gd_scene load_steps=9 format=3 uid="uid://cenlvpm0xe6n3"]
+
+[ext_resource type="Script" uid="uid://bq64yuldq8jkx" path="res://scripts/title.gd" id="1_pyl7j"]
+[ext_resource type="Texture2D" uid="uid://dlpk24bas7s6h" path="res://assets/sprites/fishing-title-background.png" id="1_wosw1"]
+[ext_resource type="Texture2D" uid="uid://ddfm7lvmi8t3f" path="res://assets/sprites/fishing-title-transparent.png" id="2_p6dhs"]
+[ext_resource type="FontFile" uid="uid://daony176pqech" path="res://assets/fonts/Kenney Mini.ttf" id="3_p6dhs"]
+
+[sub_resource type="Animation" id="Animation_wosw1"]
+resource_name = "title"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TitleText:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(96, 32), Vector2(32, 32)]
+}
+
+[sub_resource type="Animation" id="Animation_p6dhs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TitleText:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(96, 32)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_pyl7j"]
+resource_name = "label"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pyl7j"]
+_data = {
+&"RESET": SubResource("Animation_p6dhs"),
+&"label": SubResource("Animation_pyl7j"),
+&"title": SubResource("Animation_wosw1")
+}
+
+[node name="Title" type="Node2D"]
+script = ExtResource("1_pyl7j")
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -5
+position = Vector2(32, 32)
+texture = ExtResource("1_wosw1")
+
+[node name="TitleText" type="Sprite2D" parent="."]
+position = Vector2(96, 32)
+texture = ExtResource("2_p6dhs")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+offset_left = 9.0
+offset_top = 47.0
+offset_right = 40.0
+offset_bottom = 63.0
+theme_override_colors/font_color = Color(1, 0.945098, 0.909804, 1)
+theme_override_constants/line_spacing = -4
+theme_override_fonts/font = ExtResource("3_p6dhs")
+theme_override_font_sizes/font_size = 8
+text = "press
+[space]"
+horizontal_alignment = 1
+
+[node name="Controls" type="Label" parent="."]
+offset_top = 6.0
+offset_right = 64.0
+offset_bottom = 64.0
+theme_override_colors/font_color = Color(1, 0.945098, 0.909804, 1)
+theme_override_constants/line_spacing = -3
+theme_override_constants/paragraph_spacing = 2
+theme_override_fonts/font = ExtResource("3_p6dhs")
+theme_override_font_sizes/font_size = 8
+text = "controls:"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="FishControls" type="Label" parent="."]
+visible = false
+offset_top = 16.0
+offset_right = 64.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(1, 0.945098, 0.909804, 1)
+theme_override_constants/line_spacing = -3
+theme_override_fonts/font = ExtResource("3_p6dhs")
+theme_override_font_sizes/font_size = 8
+text = "fish: [space], [e], or [enter]"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="LogControls" type="Label" parent="."]
+visible = false
+offset_top = 16.0
+offset_right = 64.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(1, 0.945098, 0.909804, 1)
+theme_override_constants/line_spacing = -3
+theme_override_fonts/font = ExtResource("3_p6dhs")
+theme_override_font_sizes/font_size = 8
+text = "show/hide log: [esc] or [f]"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="NavControls" type="Label" parent="."]
+visible = false
+offset_top = 16.0
+offset_right = 64.0
+offset_bottom = 54.0
+theme_override_colors/font_color = Color(1, 0.945098, 0.909804, 1)
+theme_override_constants/line_spacing = -3
+theme_override_fonts/font = ExtResource("3_p6dhs")
+theme_override_font_sizes/font_size = 8
+text = "navigate log: [left] + [right] or [a] + [d]"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_pyl7j")
+}
+autoplay = "title"
