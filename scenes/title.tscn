@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cenlvpm0xe6n3"]
+[gd_scene load_steps=13 format=3 uid="uid://cenlvpm0xe6n3"]
 
 [ext_resource type="Script" uid="uid://bq64yuldq8jkx" path="res://scripts/title.gd" id="1_pyl7j"]
 [ext_resource type="Texture2D" uid="uid://dlpk24bas7s6h" path="res://assets/sprites/fishing-title-background.png" id="1_wosw1"]
@@ -47,6 +47,54 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Controls:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(64, 8)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FishControls:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(68, 22)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LogControls:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(66, 22)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("NavControls:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(68, 19)]
+}
 
 [sub_resource type="Animation" id="Animation_pyl7j"]
 resource_name = "label"
@@ -64,10 +112,150 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_b3w7a"]
+resource_name = "fish_controls"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Controls:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(64, 8), Vector2(0, 8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FishControls:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(68, 22), Vector2(4, 22)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TitleText:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(32, 32), Vector2(-32, 32)]
+}
+
+[sub_resource type="Animation" id="Animation_4rr2b"]
+resource_name = "log_controls"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LogControls:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(66, 22), Vector2(2, 22)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FishControls:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(4, 22), Vector2(-60, 22)]
+}
+
+[sub_resource type="Animation" id="Animation_yql1r"]
+resource_name = "nav_controls"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LogControls:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2, 22), Vector2(-62, 22)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NavControls:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(68, 19), Vector2(4, 19)]
+}
+
+[sub_resource type="Animation" id="Animation_ia1n6"]
+resource_name = "start_game"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NavControls:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(4, 19), Vector2(-60, 19)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Controls:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 8), Vector2(-64, 8)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pyl7j"]
 _data = {
 &"RESET": SubResource("Animation_p6dhs"),
+&"fish_controls": SubResource("Animation_b3w7a"),
 &"label": SubResource("Animation_pyl7j"),
+&"log_controls": SubResource("Animation_4rr2b"),
+&"nav_controls": SubResource("Animation_yql1r"),
+&"start_game": SubResource("Animation_ia1n6"),
 &"title": SubResource("Animation_wosw1")
 }
 
@@ -84,7 +272,6 @@ position = Vector2(96, 32)
 texture = ExtResource("2_p6dhs")
 
 [node name="Label" type="Label" parent="."]
-visible = false
 modulate = Color(1, 1, 1, 0)
 offset_left = 9.0
 offset_top = 47.0
@@ -99,56 +286,55 @@ text = "press
 horizontal_alignment = 1
 
 [node name="Controls" type="Label" parent="."]
-offset_top = 6.0
-offset_right = 64.0
-offset_bottom = 64.0
+offset_left = 64.0
+offset_top = 8.0
+offset_right = 128.0
+offset_bottom = 18.0
 theme_override_colors/font_color = Color(1, 0.945098, 0.909804, 1)
-theme_override_constants/line_spacing = -3
-theme_override_constants/paragraph_spacing = 2
 theme_override_fonts/font = ExtResource("3_p6dhs")
 theme_override_font_sizes/font_size = 8
 text = "controls:"
 horizontal_alignment = 1
-autowrap_mode = 2
 
 [node name="FishControls" type="Label" parent="."]
-visible = false
-offset_top = 16.0
-offset_right = 64.0
-offset_bottom = 32.0
+offset_left = 68.0
+offset_top = 22.0
+offset_right = 125.0
+offset_bottom = 39.0
 theme_override_colors/font_color = Color(1, 0.945098, 0.909804, 1)
 theme_override_constants/line_spacing = -3
 theme_override_fonts/font = ExtResource("3_p6dhs")
 theme_override_font_sizes/font_size = 8
-text = "fish: [space], [e], or [enter]"
+text = "fish: [space],
+[e], or [enter]"
 horizontal_alignment = 1
-autowrap_mode = 2
 
 [node name="LogControls" type="Label" parent="."]
-visible = false
-offset_top = 16.0
-offset_right = 64.0
-offset_bottom = 32.0
+offset_left = 66.0
+offset_top = 22.0
+offset_right = 127.0
+offset_bottom = 39.0
 theme_override_colors/font_color = Color(1, 0.945098, 0.909804, 1)
 theme_override_constants/line_spacing = -3
 theme_override_fonts/font = ExtResource("3_p6dhs")
 theme_override_font_sizes/font_size = 8
-text = "show/hide log: [esc] or [f]"
+text = "show/hide log:
+[esc] or [f]"
 horizontal_alignment = 1
-autowrap_mode = 2
 
 [node name="NavControls" type="Label" parent="."]
-visible = false
-offset_top = 16.0
-offset_right = 64.0
-offset_bottom = 54.0
+offset_left = 68.0
+offset_top = 19.0
+offset_right = 125.0
+offset_bottom = 43.0
 theme_override_colors/font_color = Color(1, 0.945098, 0.909804, 1)
 theme_override_constants/line_spacing = -3
 theme_override_fonts/font = ExtResource("3_p6dhs")
 theme_override_font_sizes/font_size = 8
-text = "navigate log: [left] + [right] or [a] + [d]"
+text = "navigate log:
+[left] + [right]
+or [a] + [d]"
 horizontal_alignment = 1
-autowrap_mode = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
