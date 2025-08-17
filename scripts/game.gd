@@ -14,6 +14,7 @@ var ready_to_fish: bool = false
 var current_state: State = State.READY
 var new_fish: Fish
 var perfect_catch: bool
+var all_fish_caught: bool = false
 
 enum State {
 	READY,
@@ -32,6 +33,8 @@ func _ready() -> void:
 	bobber.bite_timer.timeout.connect(_on_bite_timer_timeout)
 
 	minigame.minigame_over.connect(_on_minigame_end)
+
+	fish_log.all_fish_caught.connect(_on_all_fish_caught)
 
 	fish_sprite.fish_ready.connect(_on_fish_ready)
 	fish_sprite.fisher_eaten.connect(_on_fisher_eaten)
@@ -106,6 +109,10 @@ func _on_minigame_end(result: Minigame.Result) -> void:
 	fish_sprite.show_sprite(new_fish.sprite_region)
 
 
+func _on_all_fish_caught() -> void:
+	all_fish_caught = true
+
+
 func _on_fish_ready() -> void:
 	var fish_message: String = fish_log.add_fish(new_fish)
 	score.update_score(new_fish, perfect_catch)
@@ -131,6 +138,11 @@ func _on_fisher_eaten() -> void:
 
 
 func _on_catch_complete() -> void:
+	if all_fish_caught:
+		message.show_text("all fish caught!")
+		AudioManager.play_perfect_catch()
+		all_fish_caught = false
+
 	_change_state(State.READY)
 
 

@@ -17,12 +17,16 @@ extends CanvasLayer
 
 const NUM_COLOURS: int = 8
 const NUM_SIZES: int = 4
+const NUM_FISH: int = NUM_COLOURS * NUM_SIZES
 const SHEET_HEIGHT: int = Fish.SPRITE_SIZE * NUM_SIZES
 
 var sprites: Array[Sprite2D]
 var labels: Array[Label]
 var all_fish: Array[Array] = []
 var current_page: int = 0
+var num_fish_caught: int = 0
+
+signal all_fish_caught
 
 
 func _ready() -> void:
@@ -66,6 +70,9 @@ func add_fish(new: Fish) -> String:
 		all_fish[new.colour][new.size_category].caught = true
 		all_fish[new.colour][new.size_category].region = new.sprite_region
 		message = "new fish!"
+		num_fish_caught += 1
+		if num_fish_caught == NUM_FISH:
+			all_fish_caught.emit()
 
 	if all_fish[new.colour][new.size_category].biggest < new.size_inches:
 		all_fish[new.colour][new.size_category].biggest = new.size_inches
