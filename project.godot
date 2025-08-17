@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="Low Rez Jam 2025"
-run/main_scene="uid://c5cxadli5s062"
+run/main_scene="uid://cenlvpm0xe6n3"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 AudioManager="*res://scenes/audio_manager.tscn"
+TransitionScreen="*res://scenes/transition_screen.tscn"
 
 [display]
 

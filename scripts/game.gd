@@ -9,6 +9,7 @@ extends Node2D
 @onready var fish_log: CanvasLayer = %FishLog
 @onready var fish_sprite: Node2D = %FishSprite
 
+var ready_to_fish: bool = false
 var current_state: State = State.READY
 var new_fish: Fish
 
@@ -22,9 +23,14 @@ enum State {
 
 
 func _ready() -> void:
+	TransitionScreen.transition_finished.connect(_start_game)
+	TransitionScreen.fade_in()
+
 	bobber.cast_timer.timeout.connect(_on_cast_timer_timeout)
 	bobber.bite_timer.timeout.connect(_on_bite_timer_timeout)
+
 	minigame.minigame_over.connect(_on_minigame_end)
+
 	fish_sprite.fish_ready.connect(_on_fish_ready)
 	fish_sprite.fisher_eaten.connect(_on_fisher_eaten)
 	fish_sprite.catch_complete.connect(_on_catch_complete)
@@ -33,7 +39,8 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if (
 		bobber.animation_player.get_current_animation() == "cast" or
-		bobber.animation_player.get_current_animation() == "reel"
+		bobber.animation_player.get_current_animation() == "reel" or
+		not ready_to_fish
 	):
 		return
 
@@ -62,6 +69,10 @@ func _process(_delta: float) -> void:
 				minigame.start_minigame(new_fish.colour)
 			State.HOOKED:
 				minigame.stop_minigame()
+
+
+func _start_game() -> void:
+	ready_to_fish = true
 
 
 func _on_cast_timer_timeout() -> void:

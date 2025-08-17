@@ -18,6 +18,8 @@ enum Line {
 
 func _ready() -> void:
 	animation_player.animation_finished.connect(_on_animation_finished)
+	animation_player.play("RESET")
+	TransitionScreen.transition_finished.connect(_start_game)
 
 
 func _process(_delta: float) -> void:
@@ -26,10 +28,12 @@ func _process(_delta: float) -> void:
 
 
 func _on_animation_finished(animation_name: String) -> void:
-	if animation_name == "title":
+	if animation_name == "RESET":
+		animation_player.play("title")
+	elif animation_name == "title":
 		animation_player.play("label")
 	elif animation_name == "start_game":
-		_start_game()
+		TransitionScreen.fade_to_black()
 	else:
 		animations_finished = true
 

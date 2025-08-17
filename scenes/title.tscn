@@ -286,9 +286,8 @@ text = "press
 horizontal_alignment = 1
 
 [node name="Controls" type="Label" parent="."]
-offset_left = 64.0
+offset_left = -64.0
 offset_top = 8.0
-offset_right = 128.0
 offset_bottom = 18.0
 theme_override_colors/font_color = Color(1, 0.945098, 0.909804, 1)
 theme_override_fonts/font = ExtResource("3_p6dhs")
@@ -323,9 +322,9 @@ text = "show/hide log:
 horizontal_alignment = 1
 
 [node name="NavControls" type="Label" parent="."]
-offset_left = 68.0
+offset_left = -60.0
 offset_top = 19.0
-offset_right = 125.0
+offset_right = -3.0
 offset_bottom = 43.0
 theme_override_colors/font_color = Color(1, 0.945098, 0.909804, 1)
 theme_override_constants/line_spacing = -3
@@ -340,4 +339,3 @@ horizontal_alignment = 1
 libraries = {
 &"": SubResource("AnimationLibrary_pyl7j")
 }
-autoplay = "title"
